@@ -1,17 +1,21 @@
-node{
-    stage('Build'){
+node {
+    timestamps {
+        stage('Build'){
         sh """
         docker build . -t ebrudalkir/deneme-helloworld:${tag}
         """
-    }
-    stage('show images'){
+        }
+        stage('show images'){
         sh """
         docker images
         """
-    }
-    stage('push Dockerhub'){
+        }
+        stage('push Dockerhub'){
         sh """
         docker push ebrudalkir/deneme-helloworld:${tag}
         """
+        }
     }
 }
+
+
